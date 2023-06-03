@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "pages",
+			"path": "../aifeeling analyze/pages"
+		},
+		{
+			"name": "aifeelize",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

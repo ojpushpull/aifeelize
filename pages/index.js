@@ -3,7 +3,9 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+  const [demoInput, setDemoInput] = useState("");
+  const [industryInput, setIndustryInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -14,7 +16,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ name: nameInput, demograph: demoInput, industry: IndustryInput }),
       });
 
       const data = await response.json();
@@ -23,7 +25,9 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      setNameInput("");
+      setDemoInput("");
+      setIndustryInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -44,9 +48,23 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
+            name="name"
+            placeholder="Enter an company name"
+            value={nameInput}
+            onChange={(e) => setAnimalInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="industry"
+            placeholder="Enter your industry"
+            value={industryInput}
+            onChange={(e) => setAnimalInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="demograph"
+            placeholder="Enter the demographics"
+            value={demoInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
           <input type="submit" value="Generate names" />
