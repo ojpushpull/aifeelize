@@ -15,11 +15,30 @@ export default async function (req, res) {
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
+  const name = req.body.name || '';
+  if (name.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter a valid name",
+      }
+    });
+    return;
+  }
+
+  const industry = req.body.industry || '';
+  if (industry.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid industry",
+      }
+    });
+    return;
+  }
+  const demograph = req.body.demograph || '';
+  if (demograph.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid demograph",
       }
     });
     return;
@@ -28,8 +47,8 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+      prompt: generatePrompt(name,industry,demograph),
+      temperature: 1,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -48,12 +67,19 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Give me ways to work on this feeling based on CBT.
+function generatePrompt(name,industry,demograph) {
+  
+    return `Suggest 5 different headlines for this company
 
+Business: They are called baby ribs they are in the restaurant space there customers are men age 25-40
+Response: 1. Super sweet ribs
+          2. men love our meat
+          3. baby got ribs
+          4. Come eat our meat
+          5. these ribs aint for
 
-Feeling: ${capitalizedAnimal}
+Business: They are called ${name} they are in the ${industry} space there customers are ${demograph} 
 Response:`;
 }
+
+

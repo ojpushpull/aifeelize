@@ -16,7 +16,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: nameInput, demograph: demoInput, industry: IndustryInput }),
+        body: JSON.stringify({ name: nameInput, demograph: demoInput, industry: industryInput }),
       });
 
       const data = await response.json();
@@ -51,21 +51,21 @@ export default function Home() {
             name="name"
             placeholder="Enter an company name"
             value={nameInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            onChange={(e) => setNameInput(e.target.value)}
           />
           <input
             type="text"
             name="industry"
             placeholder="Enter your industry"
             value={industryInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            onChange={(e) => setIndustryInput(e.target.value)}
           />
           <input
             type="text"
             name="demograph"
             placeholder="Enter the demographics"
             value={demoInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            onChange={(e) => setDemoInput(e.target.value)}
           />
           <input type="submit" value="Generate names" />
         </form>
