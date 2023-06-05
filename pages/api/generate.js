@@ -16,7 +16,7 @@ export default async function (req, res) {
   }
 
   const name = req.body.name || '';
-  if (name.trim().length === 0) {
+  if (name.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid name",
@@ -26,7 +26,7 @@ export default async function (req, res) {
   }
 
   const prodserv = req.body.prodserv || '';
-  if (prodserv.trim().length === 0) {
+  if (prodserv.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid prodserv",
@@ -35,7 +35,7 @@ export default async function (req, res) {
     return;
   }
   const mission = req.body.mission || '';
-  if (mission.trim().length === 0) {
+  if (mission.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid mission",
@@ -45,7 +45,7 @@ export default async function (req, res) {
   }
 
   const vision = req.body.vision || '';
-  if (vision.trim().length === 0) {
+  if (vision.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid vision",
@@ -54,7 +54,7 @@ export default async function (req, res) {
     return;
   }
   const problem = req.body.problem || '';
-  if (problem.trim().length === 0) {
+  if (problem.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid problem",
@@ -63,7 +63,7 @@ export default async function (req, res) {
     return;
   }
   const solution = req.body.solution || '';
-  if (solution.trim().length === 0) {
+  if (solution.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid solution",
@@ -72,7 +72,7 @@ export default async function (req, res) {
     return;
   }
   const future = req.body.future || '';
-  if (future.trim().length === 0) {
+  if (future.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid future",
@@ -81,7 +81,7 @@ export default async function (req, res) {
     return;
   }
   const descrip = req.body.descrip || '';
-  if (descrip.trim().length === 0) {
+  if (descrip.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid descrip",
@@ -90,7 +90,7 @@ export default async function (req, res) {
     return;
   }
   const colors = req.body.colors || '';
-  if (colors.trim().length === 0) {
+  if (colors.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid colors",
@@ -99,7 +99,7 @@ export default async function (req, res) {
     return;
   }
   const villian = req.body.villian || '';
-  if (villian.trim().length === 0) {
+  if (villian.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid villian",
@@ -108,7 +108,7 @@ export default async function (req, res) {
     return;
   }
   const hero = req.body.hero || '';
-  if (hero.trim().length === 0) {
+  if (hero.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid hero",
@@ -144,7 +144,7 @@ export default async function (req, res) {
 
 function generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {
   
-    return `You are a brand strategist rite a creative narrative based on the data provided
+    return `You are a brand strategist write a creative narrative based on the data provided
 
 
 

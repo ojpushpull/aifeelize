@@ -14,6 +14,7 @@ export default function Home() {
   const [colorInput, setColorInput] = useState("");
   const [villianInput, setVillianInput] = useState("");
   const [heroInput, setHeroInput] = useState("");
+  const [descripInput, setDescripInput] = useState("");
   const [result, setResult] = useState();
 
   //submit data to generate function
@@ -26,7 +27,7 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name: nameInput, prodserv: prodservInput, vision: visionInput, mission: missionInput, problem: problemInput, solution: solutionInput,
-        future: futureInput, color: colorInput, villian: villianInput, hero: heroInput }),
+        future: futureInput, colors: colorInput, villian: villianInput, hero: heroInput, descrip: descripInput }),
       });
 
       const data = await response.json();
@@ -45,6 +46,7 @@ export default function Home() {
       setColorInput("");
       setVillianInput("");
       setHeroInput("");
+      setDescripInput("");
     } catch(error) {
       // error handling logic here
       console.error(error);
@@ -140,7 +142,7 @@ export default function Home() {
             value={heroInput}
             onChange={(e) => setHeroInput(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Generate narrative" />
         </form>
         <div className={styles.result}>{result}</div>
       </main>
