@@ -25,30 +25,105 @@ export default async function (req, res) {
     return;
   }
 
-  const industry = req.body.industry || '';
-  if (industry.trim().length === 0) {
+  const prodserv = req.body.prodserv || '';
+  if (prodserv.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid industry",
+        message: "Please enter a valid prodserv",
       }
     });
     return;
   }
-  const demograph = req.body.demograph || '';
-  if (demograph.trim().length === 0) {
+  const mission = req.body.mission || '';
+  if (mission.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid demograph",
+        message: "Please enter a valid mission",
       }
     });
     return;
   }
 
+  const vision = req.body.vision || '';
+  if (vision.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid vision",
+      }
+    });
+    return;
+  }
+  const problem = req.body.problem || '';
+  if (problem.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid problem",
+      }
+    });
+    return;
+  }
+  const solution = req.body.solution || '';
+  if (solution.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid solution",
+      }
+    });
+    return;
+  }
+  const future = req.body.future || '';
+  if (future.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid future",
+      }
+    });
+    return;
+  }
+  const descrip = req.body.descrip || '';
+  if (descrip.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid descrip",
+      }
+    });
+    return;
+  }
+  const colors = req.body.colors || '';
+  if (colors.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid colors",
+      }
+    });
+    return;
+  }
+  const villian = req.body.villian || '';
+  if (villian.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid villian",
+      }
+    });
+    return;
+  }
+  const hero = req.body.hero || '';
+  if (hero.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid hero",
+      }
+    });
+    return;
+  }
+
+
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(name,industry,demograph),
+      prompt: generatePrompt(name, prodserv, mission, problem, descrip, hero, colors, villian, vision, future, solution ),
       temperature: 1,
+      max_tokens: 100,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -67,18 +142,13 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(name,industry,demograph) {
+function generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {
   
-    return `Suggest 5 different headlines for this company
+    return `You are a brand strategist rite a creative narrative based on the data provided
 
-Business: They are called baby ribs they are in the restaurant space there customers are men age 25-40
-Response: 1. Super sweet ribs
-          2. men love our meat
-          3. baby got ribs
-          4. Come eat our meat
-          5. these ribs aint for
 
-Business: They are called ${name} they are in the ${industry} space there customers are ${demograph} 
+
+Business: The organization is called ${name} they offer ${prodserv} their goal is ${mission} and they beleive in ${vision}. The organization believes ${problem} is an issue and can be solved with ${solution}. They fight for ${future} changes in the world. ${descrip} are the words and ${colors} are the colors that best describe this organization. The organization beleives ${villian} is the enemy they are against and ${hero} is a hero on their side.
 Response:`;
 }
 

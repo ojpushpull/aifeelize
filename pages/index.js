@@ -2,12 +2,21 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 
+//set input states for form
 export default function Home() {
   const [nameInput, setNameInput] = useState("");
-  const [demoInput, setDemoInput] = useState("");
-  const [industryInput, setIndustryInput] = useState("");
+  const [prodservInput, setProdservInput] = useState("");
+  const [visionInput, setVisionInput] = useState("");
+  const [missionInput, setMissionInput] = useState("");
+  const [problemInput, setProblemInput] = useState("");
+  const [solutionInput, setSolutionInput] = useState("");
+  const [futureInput, setFutureInput] = useState("");
+  const [colorInput, setColorInput] = useState("");
+  const [villianInput, setVillianInput] = useState("");
+  const [heroInput, setHeroInput] = useState("");
   const [result, setResult] = useState();
 
+  //submit data to generate function
   async function onSubmit(event) {
     event.preventDefault();
     try {
@@ -16,7 +25,8 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: nameInput, demograph: demoInput, industry: industryInput }),
+        body: JSON.stringify({ name: nameInput, prodserv: prodservInput, vision: visionInput, mission: missionInput, problem: problemInput, solution: solutionInput,
+        future: futureInput, color: colorInput, villian: villianInput, hero: heroInput }),
       });
 
       const data = await response.json();
@@ -26,10 +36,17 @@ export default function Home() {
 
       setResult(data.result);
       setNameInput("");
-      setDemoInput("");
-      setIndustryInput("");
+      setProdservInput("");
+      setVisionInput("");
+      setMissionInput("");
+      setProblemInput("");
+      setSolutionInput("");
+      setFutureInput("");
+      setColorInput("");
+      setVillianInput("");
+      setHeroInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
+      // error handling logic here
       console.error(error);
       alert(error.message);
     }
@@ -38,13 +55,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>Business Narrative Generator</title>
+        
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="/logo192.png" className={styles.icon} />
+        <h3>Create your narrative</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
@@ -55,17 +72,73 @@ export default function Home() {
           />
           <input
             type="text"
-            name="industry"
-            placeholder="Enter your industry"
-            value={industryInput}
-            onChange={(e) => setIndustryInput(e.target.value)}
+            name="prodserv"
+            placeholder="Enter your product or service"
+            value={prodservInput}
+            onChange={(e) => setProdservInput(e.target.value)}
           />
           <input
             type="text"
-            name="demograph"
-            placeholder="Enter the demographics"
-            value={demoInput}
-            onChange={(e) => setDemoInput(e.target.value)}
+            name="vision"
+            placeholder="Enter the vision of the organization"
+            value={visionInput}
+            onChange={(e) => setVisionInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="mission"
+            placeholder="Enter the mission of the organization"
+            value={missionInput}
+            onChange={(e) => setMissionInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="problem"
+            placeholder="What problem are you solving"
+            value={problemInput}
+            onChange={(e) => setProblemInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="solution"
+            placeholder="What is the solution to the problem"
+            value={solutionInput}
+            onChange={(e) => setSolutionInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="future"
+            placeholder="what is the future you are fighting for"
+            value={futureInput}
+            onChange={(e) => setFutureInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="descrip"
+            placeholder="Enter descriptive words that best describe your organization"
+            value={descripInput}
+            onChange={(e) => setDescripInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="colors"
+            placeholder="What colors represent your organization"
+            value={colorInput}
+            onChange={(e) => setColorInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="villian"
+            placeholder="What is the villian of your organization"
+            value={villianInput}
+            onChange={(e) => setVillianInput(e.target.value)}
+          />
+          <input
+            type="text"
+            name="hero"
+            placeholder="If your organization had a hero who would it be"
+            value={heroInput}
+            onChange={(e) => setHeroInput(e.target.value)}
           />
           <input type="submit" value="Generate names" />
         </form>
