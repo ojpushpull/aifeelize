@@ -1,35 +1,171 @@
 "use strict";
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (() => {
 var exports = {};
-exports.id = "pages/api/generate";
-exports.ids = ["pages/api/generate"];
+exports.id = 565;
+exports.ids = [565];
 exports.modules = {
 
-/***/ "openai":
-/*!*************************!*\
-  !*** external "openai" ***!
-  \*************************/
-/***/ ((module) => {
-
-module.exports = require("openai");
-
-/***/ }),
-
-/***/ "(api)/./pages/api/generate.js":
-/*!*******************************!*\
-  !*** ./pages/api/generate.js ***!
-  \*******************************/
+/***/ 961:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var openai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! openai */ \"openai\");\n/* harmony import */ var openai__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(openai__WEBPACK_IMPORTED_MODULE_0__);\n\nconst configuration = new openai__WEBPACK_IMPORTED_MODULE_0__.Configuration({\n    apiKey: process.env.OPENAI_API_KEY\n});\nconst openai = new openai__WEBPACK_IMPORTED_MODULE_0__.OpenAIApi(configuration);\n/* harmony default export */ async function __WEBPACK_DEFAULT_EXPORT__(req, res) {\n    if (!configuration.apiKey) {\n        res.status(500).json({\n            error: {\n                message: \"OpenAI API key not configured, please follow instructions in README.md\"\n            }\n        });\n        return;\n    }\n    const name = req.body.name || \"\";\n    if (name.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid name\"\n            }\n        });\n        return;\n    }\n    const prodserv = req.body.prodserv || \"\";\n    if (prodserv.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid prodserv\"\n            }\n        });\n        return;\n    }\n    const mission = req.body.mission || \"\";\n    if (mission.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid mission\"\n            }\n        });\n        return;\n    }\n    const vision = req.body.vision || \"\";\n    if (vision.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid vision\"\n            }\n        });\n        return;\n    }\n    const problem = req.body.problem || \"\";\n    if (problem.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid problem\"\n            }\n        });\n        return;\n    }\n    const solution = req.body.solution || \"\";\n    if (solution.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid solution\"\n            }\n        });\n        return;\n    }\n    const future = req.body.future || \"\";\n    if (future.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid future\"\n            }\n        });\n        return;\n    }\n    const descrip = req.body.descrip || \"\";\n    if (descrip.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid descrip\"\n            }\n        });\n        return;\n    }\n    const colors = req.body.colors || \"\";\n    if (colors.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid colors\"\n            }\n        });\n        return;\n    }\n    const villian = req.body.villian || \"\";\n    if (villian.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid villian\"\n            }\n        });\n        return;\n    }\n    const hero = req.body.hero || \"\";\n    if (hero.length === 0) {\n        res.status(400).json({\n            error: {\n                message: \"Please enter a valid hero\"\n            }\n        });\n        return;\n    }\n    try {\n        const completion = await openai.createCompletion({\n            model: \"text-davinci-003\",\n            prompt: generatePrompt(name, prodserv, mission, problem, descrip, hero, colors, villian, vision, future, solution),\n            temperature: 1,\n            max_tokens: 100\n        });\n        res.status(200).json({\n            result: completion.data.choices[0].text\n        });\n    } catch (error) {\n        // Consider adjusting the error handling logic for your use case\n        if (error.response) {\n            console.error(error.response.status, error.response.data);\n            res.status(error.response.status).json(error.response.data);\n        } else {\n            console.error(`Error with OpenAI API request: ${error.message}`);\n            res.status(500).json({\n                error: {\n                    message: \"An error occurred during your request.\"\n                }\n            });\n        }\n    }\n}\nfunction generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {\n    return `You are a brand strategist rite a creative narrative based on the data provided\n\n\n\nBusiness: The organization is called ${name} they offer ${prodserv} their goal is ${mission} and they beleive in ${vision}. The organization believes ${problem} is an issue and can be solved with ${solution}. They fight for ${future} changes in the world. ${descrip} are the words and ${colors} are the colors that best describe this organization. The organization beleives ${villian} is the enemy they are against and ${hero} is a hero on their side.\nResponse:`;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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QUssQ0FBQyxDQUFDLCtCQUErQixFQUFFQSxNQUFNQyxPQUFPLENBQUMsQ0FBQztZQUMvREosSUFBSUMsTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztnQkFDbkJDLE9BQU87b0JBQ0xDLFNBQVM7Z0JBQ1g7WUFDRjtRQUNGLENBQUM7SUFDSDtBQUNGLENBQUM7QUFFRCxTQUFTa0IsZUFBZWpCLElBQUksRUFBRUcsUUFBUSxFQUFFQyxPQUFPLEVBQUVDLE1BQU0sRUFBRU8sSUFBSSxFQUFFRCxPQUFPLEVBQUVMLE9BQU8sRUFBRUMsUUFBUSxFQUFFRSxPQUFPLEVBQUVDLE1BQU0sRUFBRUYsTUFBTSxFQUFFO0lBRWhILE9BQU8sQ0FBQzs7OztxQ0FJeUIsRUFBRVIsS0FBSyxZQUFZLEVBQUVHLFNBQVMsZUFBZSxFQUFFQyxRQUFRLHFCQUFxQixFQUFFQyxPQUFPLDRCQUE0QixFQUFFQyxRQUFRLG9DQUFvQyxFQUFFQyxTQUFTLGlCQUFpQixFQUFFQyxPQUFPLHVCQUF1QixFQUFFQyxRQUFRLG1CQUFtQixFQUFFQyxPQUFPLGdGQUFnRixFQUFFQyxRQUFRLG1DQUFtQyxFQUFFQyxLQUFLO1NBQ2phLENBQUM7QUFDViIsInNvdXJjZXMiOlsid2VicGFjazovL2FpZmVlbGl6ZS8uL3BhZ2VzL2FwaS9nZW5lcmF0ZS5qcz82MjdjIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbmZpZ3VyYXRpb24sIE9wZW5BSUFwaSB9IGZyb20gXCJvcGVuYWlcIjtcblxuY29uc3QgY29uZmlndXJhdGlvbiA9IG5ldyBDb25maWd1cmF0aW9uKHtcbiAgYXBpS2V5OiBwcm9jZXNzLmVudi5PUEVOQUlfQVBJX0tFWSxcbn0pO1xuY29uc3Qgb3BlbmFpID0gbmV3IE9wZW5BSUFwaShjb25maWd1cmF0aW9uKTtcblxuZXhwb3J0IGRlZmF1bHQgYXN5bmMgZnVuY3Rpb24gKHJlcSwgcmVzKSB7XG4gIGlmICghY29uZmlndXJhdGlvbi5hcGlLZXkpIHtcbiAgICByZXMuc3RhdHVzKDUwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIk9wZW5BSSBBUEkga2V5IG5vdCBjb25maWd1cmVkLCBwbGVhc2UgZm9sbG93IGluc3RydWN0aW9ucyBpbiBSRUFETUUubWRcIixcbiAgICAgIH1cbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cblxuICBjb25zdCBuYW1lID0gcmVxLmJvZHkubmFtZSB8fCAnJztcbiAgaWYgKG5hbWUubGVuZ3RoID09PSAwKSB7XG4gICAgcmVzLnN0YXR1cyg0MDApLmpzb24oe1xuICAgICAgZXJyb3I6IHtcbiAgICAgICAgbWVzc2FnZTogXCJQbGVhc2UgZW50ZXIgYSB2YWxpZCBuYW1lXCIsXG4gICAgICB9XG4gICAgfSk7XG4gICAgcmV0dXJuO1xuICB9XG5cbiAgY29uc3QgcHJvZHNlcnYgPSByZXEuYm9keS5wcm9kc2VydiB8fCAnJztcbiAgaWYgKHByb2RzZXJ2Lmxlbmd0aCA9PT0gMCkge1xuICAgIHJlcy5zdGF0dXMoNDAwKS5qc29uKHtcbiAgICAgIGVycm9yOiB7XG4gICAgICAgIG1lc3NhZ2U6IFwiUGxlYXNlIGVudGVyIGEgdmFsaWQgcHJvZHNlcnZcIixcbiAgICAgIH1cbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cbiAgY29uc3QgbWlzc2lvbiA9IHJlcS5ib2R5Lm1pc3Npb24gfHwgJyc7XG4gIGlmIChtaXNzaW9uLmxlbmd0aCA9PT0gMCkge1xuICAgIHJlcy5zdGF0dXMoNDAwKS5qc29uKHtcbiAgICAgIGVycm9yOiB7XG4gICAgICAgIG1lc3NhZ2U6IFwiUGxlYXNlIGVudGVyIGEgdmFsaWQgbWlzc2lvblwiLFxuICAgICAgfVxuICAgIH0pO1xuICAgIHJldHVybjtcbiAgfVxuXG4gIGNvbnN0IHZpc2lvbiA9IHJlcS5ib2R5LnZpc2lvbiB8fCAnJztcbiAgaWYgKHZpc2lvbi5sZW5ndGggPT09IDApIHtcbiAgICByZXMuc3RhdHVzKDQwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIHZpc2lvblwiLFxuICAgICAgfVxuICAgIH0pO1xuICAgIHJldHVybjtcbiAgfVxuICBjb25zdCBwcm9ibGVtID0gcmVxLmJvZHkucHJvYmxlbSB8fCAnJztcbiAgaWYgKHByb2JsZW0ubGVuZ3RoID09PSAwKSB7XG4gICAgcmVzLnN0YXR1cyg0MDApLmpzb24oe1xuICAgICAgZXJyb3I6IHtcbiAgICAgICAgbWVzc2FnZTogXCJQbGVhc2UgZW50ZXIgYSB2YWxpZCBwcm9ibGVtXCIsXG4gICAgICB9XG4gICAgfSk7XG4gICAgcmV0dXJuO1xuICB9XG4gIGNvbnN0IHNvbHV0aW9uID0gcmVxLmJvZHkuc29sdXRpb24gfHwgJyc7XG4gIGlmIChzb2x1dGlvbi5sZW5ndGggPT09IDApIHtcbiAgICByZXMuc3RhdHVzKDQwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIHNvbHV0aW9uXCIsXG4gICAgICB9XG4gICAgfSk7XG4gICAgcmV0dXJuO1xuICB9XG4gIGNvbnN0IGZ1dHVyZSA9IHJlcS5ib2R5LmZ1dHVyZSB8fCAnJztcbiAgaWYgKGZ1dHVyZS5sZW5ndGggPT09IDApIHtcbiAgICByZXMuc3RhdHVzKDQwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIGZ1dHVyZVwiLFxuICAgICAgfVxuICAgIH0pO1xuICAgIHJldHVybjtcbiAgfVxuICBjb25zdCBkZXNjcmlwID0gcmVxLmJvZHkuZGVzY3JpcCB8fCAnJztcbiAgaWYgKGRlc2NyaXAubGVuZ3RoID09PSAwKSB7XG4gICAgcmVzLnN0YXR1cyg0MDApLmpzb24oe1xuICAgICAgZXJyb3I6IHtcbiAgICAgICAgbWVzc2FnZTogXCJQbGVhc2UgZW50ZXIgYSB2YWxpZCBkZXNjcmlwXCIsXG4gICAgICB9XG4gICAgfSk7XG4gICAgcmV0dXJuO1xuICB9XG4gIGNvbnN0IGNvbG9ycyA9IHJlcS5ib2R5LmNvbG9ycyB8fCAnJztcbiAgaWYgKGNvbG9ycy5sZW5ndGggPT09IDApIHtcbiAgICByZXMuc3RhdHVzKDQwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIGNvbG9yc1wiLFxuICAgICAgfVxuICAgIH0pO1xuICAgIHJldHVybjtcbiAgfVxuICBjb25zdCB2aWxsaWFuID0gcmVxLmJvZHkudmlsbGlhbiB8fCAnJztcbiAgaWYgKHZpbGxpYW4ubGVuZ3RoID09PSAwKSB7XG4gICAgcmVzLnN0YXR1cyg0MDApLmpzb24oe1xuICAgICAgZXJyb3I6IHtcbiAgICAgICAgbWVzc2FnZTogXCJQbGVhc2UgZW50ZXIgYSB2YWxpZCB2aWxsaWFuXCIsXG4gICAgICB9XG4gICAgfSk7XG4gICAgcmV0dXJuO1xuICB9XG4gIGNvbnN0IGhlcm8gPSByZXEuYm9keS5oZXJvIHx8ICcnO1xuICBpZiAoaGVyby5sZW5ndGggPT09IDApIHtcbiAgICByZXMuc3RhdHVzKDQwMCkuanNvbih7XG4gICAgICBlcnJvcjoge1xuICAgICAgICBtZXNzYWdlOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIGhlcm9cIixcbiAgICAgIH1cbiAgICB9KTtcbiAgICByZXR1cm47XG4gIH1cblxuXG4gIHRyeSB7XG4gICAgY29uc3QgY29tcGxldGlvbiA9IGF3YWl0IG9wZW5haS5jcmVhdGVDb21wbGV0aW9uKHtcbiAgICAgIG1vZGVsOiBcInRleHQtZGF2aW5jaS0wMDNcIixcbiAgICAgIHByb21wdDogZ2VuZXJhdGVQcm9tcHQobmFtZSwgcHJvZHNlcnYsIG1pc3Npb24sIHByb2JsZW0sIGRlc2NyaXAsIGhlcm8sIGNvbG9ycywgdmlsbGlhbiwgdmlzaW9uLCBmdXR1cmUsIHNvbHV0aW9uICksXG4gICAgICB0ZW1wZXJhdHVyZTogMSxcbiAgICAgIG1heF90b2tlbnM6IDEwMCxcbiAgICB9KTtcbiAgICByZXMuc3RhdHVzKDIwMCkuanNvbih7IHJlc3VsdDogY29tcGxldGlvbi5kYXRhLmNob2ljZXNbMF0udGV4dCB9KTtcbiAgfSBjYXRjaChlcnJvcikge1xuICAgIC8vIENvbnNpZGVyIGFkanVzdGluZyB0aGUgZXJyb3IgaGFuZGxpbmcgbG9naWMgZm9yIHlvdXIgdXNlIGNhc2VcbiAgICBpZiAoZXJyb3IucmVzcG9uc2UpIHtcbiAgICAgIGNvbnNvbGUuZXJyb3IoZXJyb3IucmVzcG9uc2Uuc3RhdHVzLCBlcnJvci5yZXNwb25zZS5kYXRhKTtcbiAgICAgIHJlcy5zdGF0dXMoZXJyb3IucmVzcG9uc2Uuc3RhdHVzKS5qc29uKGVycm9yLnJlc3BvbnNlLmRhdGEpO1xuICAgIH0gZWxzZSB7XG4gICAgICBjb25zb2xlLmVycm9yKGBFcnJvciB3aXRoIE9wZW5BSSBBUEkgcmVxdWVzdDogJHtlcnJvci5tZXNzYWdlfWApO1xuICAgICAgcmVzLnN0YXR1cyg1MDApLmpzb24oe1xuICAgICAgICBlcnJvcjoge1xuICAgICAgICAgIG1lc3NhZ2U6ICdBbiBlcnJvciBvY2N1cnJlZCBkdXJpbmcgeW91ciByZXF1ZXN0LicsXG4gICAgICAgIH1cbiAgICAgIH0pO1xuICAgIH1cbiAgfVxufVxuXG5mdW5jdGlvbiBnZW5lcmF0ZVByb21wdChuYW1lLCBwcm9kc2VydiwgbWlzc2lvbiwgdmlzaW9uLCBoZXJvLCB2aWxsaWFuLCBwcm9ibGVtLCBzb2x1dGlvbiwgZGVzY3JpcCwgY29sb3JzLCBmdXR1cmUpIHtcbiAgXG4gICAgcmV0dXJuIGBZb3UgYXJlIGEgYnJhbmQgc3RyYXRlZ2lzdCByaXRlIGEgY3JlYXRpdmUgbmFycmF0aXZlIGJhc2VkIG9uIHRoZSBkYXRhIHByb3ZpZGVkXG5cblxuXG5CdXNpbmVzczogVGhlIG9yZ2FuaXphdGlvbiBpcyBjYWxsZWQgJHtuYW1lfSB0aGV5IG9mZmVyICR7cHJvZHNlcnZ9IHRoZWlyIGdvYWwgaXMgJHttaXNzaW9ufSBhbmQgdGhleSBiZWxlaXZlIGluICR7dmlzaW9ufS4gVGhlIG9yZ2FuaXphdGlvbiBiZWxpZXZlcyAke3Byb2JsZW19IGlzIGFuIGlzc3VlIGFuZCBjYW4gYmUgc29sdmVkIHdpdGggJHtzb2x1dGlvbn0uIFRoZXkgZmlnaHQgZm9yICR7ZnV0dXJlfSBjaGFuZ2VzIGluIHRoZSB3b3JsZC4gJHtkZXNjcmlwfSBhcmUgdGhlIHdvcmRzIGFuZCAke2NvbG9yc30gYXJlIHRoZSBjb2xvcnMgdGhhdCBiZXN0IGRlc2NyaWJlIHRoaXMgb3JnYW5pemF0aW9uLiBUaGUgb3JnYW5pemF0aW9uIGJlbGVpdmVzICR7dmlsbGlhbn0gaXMgdGhlIGVuZW15IHRoZXkgYXJlIGFnYWluc3QgYW5kICR7aGVyb30gaXMgYSBoZXJvIG9uIHRoZWlyIHNpZGUuXG5SZXNwb25zZTpgO1xufVxuXG5cbiJdLCJuYW1lcyI6WyJDb25maWd1cmF0aW9uIiwiT3BlbkFJQXBpIiwiY29uZmlndXJhdGlvbiIsImFwaUtleSIsInByb2Nlc3MiLCJlbnYiLCJPUEVOQUlfQVBJX0tFWSIsIm9wZW5haSIsInJlcSIsInJlcyIsInN0YXR1cyIsImpzb24iLCJlcnJvciIsIm1lc3NhZ2UiLCJuYW1lIiwiYm9keSIsImxlbmd0aCIsInByb2RzZXJ2IiwibWlzc2lvbiIsInZpc2lvbiIsInByb2JsZW0iLCJzb2x1dGlvbiIsImZ1dHVyZSIsImRlc2NyaXAiLCJjb2xvcnMiLCJ2aWxsaWFuIiwiaGVybyIsImNvbXBsZXRpb24iLCJjcmVhdGVDb21wbGV0aW9uIiwibW9kZWwiLCJwcm9tcHQiLCJnZW5lcmF0ZVByb21wdCIsInRlbXBlcmF0dXJlIiwibWF4X3Rva2VucyIsInJlc3VsdCIsImRhdGEiLCJjaG9pY2VzIiwidGV4dCIsInJlc3BvbnNlIiwiY29uc29sZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(api)/./pages/api/generate.js\n");
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ generate)
+});
+
+;// CONCATENATED MODULE: external "openai"
+const external_openai_namespaceObject = require("openai");
+;// CONCATENATED MODULE: ./pages/api/generate.js
+
+const configuration = new external_openai_namespaceObject.Configuration({
+    apiKey: process.env.OPENAI_API_KEY
+});
+const openai = new external_openai_namespaceObject.OpenAIApi(configuration);
+/* harmony default export */ async function generate(req, res) {
+    if (!configuration.apiKey) {
+        res.status(500).json({
+            error: {
+                message: "OpenAI API key not configured, please follow instructions in README.md"
+            }
+        });
+        return;
+    }
+    const name = req.body.name || "";
+    if (name.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid name"
+            }
+        });
+        return;
+    }
+    const prodserv = req.body.prodserv || "";
+    if (prodserv.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid prodserv"
+            }
+        });
+        return;
+    }
+    const mission = req.body.mission || "";
+    if (mission.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid mission"
+            }
+        });
+        return;
+    }
+    const vision = req.body.vision || "";
+    if (vision.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid vision"
+            }
+        });
+        return;
+    }
+    const problem = req.body.problem || "";
+    if (problem.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid problem"
+            }
+        });
+        return;
+    }
+    const solution = req.body.solution || "";
+    if (solution.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid solution"
+            }
+        });
+        return;
+    }
+    const future = req.body.future || "";
+    if (future.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid future"
+            }
+        });
+        return;
+    }
+    const descrip = req.body.descrip || "";
+    if (descrip.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid descrip"
+            }
+        });
+        return;
+    }
+    const colors = req.body.colors || "";
+    if (colors.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid colors"
+            }
+        });
+        return;
+    }
+    const villian = req.body.villian || "";
+    if (villian.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid villian"
+            }
+        });
+        return;
+    }
+    const hero = req.body.hero || "";
+    if (hero.length === 0) {
+        res.status(400).json({
+            error: {
+                message: "Please enter a valid hero"
+            }
+        });
+        return;
+    }
+    try {
+        const completion = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: generatePrompt(name, prodserv, mission, problem, descrip, hero, colors, villian, vision, future, solution),
+            temperature: 1,
+            max_tokens: 100
+        });
+        res.status(200).json({
+            result: completion.data.choices[0].text
+        });
+    } catch (error) {
+        // Consider adjusting the error handling logic for your use case
+        if (error.response) {
+            console.error(error.response.status, error.response.data);
+            res.status(error.response.status).json(error.response.data);
+        } else {
+            console.error(`Error with OpenAI API request: ${error.message}`);
+            res.status(500).json({
+                error: {
+                    message: "An error occurred during your request."
+                }
+            });
+        }
+    }
+}
+function generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {
+    return `You are a brand strategist write a creative narrative based on the data provided
+
+
+
+Business: The organization is called ${name} they offer ${prodserv} their goal is ${mission} and they beleive in ${vision}. The organization believes ${problem} is an issue and can be solved with ${solution}. They fight for ${future} changes in the world. ${descrip} are the words and ${colors} are the colors that best describe this organization. The organization beleives ${villian} is the enemy they are against and ${hero} is a hero on their side.
+Response:`;
+}
+
 
 /***/ })
 
@@ -40,7 +176,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/generate.js"));
+var __webpack_exports__ = (__webpack_exec__(961));
 module.exports = __webpack_exports__;
 
 })();
