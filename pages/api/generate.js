@@ -123,7 +123,8 @@ export default async function (req, res) {
       model: "text-davinci-003",
       prompt: generatePrompt(name, prodserv, mission, problem, descrip, hero, colors, villian, vision, future, solution ),
       temperature: 1,
-      max_tokens: 100,
+      
+      max_tokens: 1042,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -144,7 +145,7 @@ export default async function (req, res) {
 
 function generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {
   
-    return `You are a brand strategist write a creative narrative based on the data provided
+    return `You are a brand strategist write a 750 word creative narrative/ buying vision for the company based on the data provided
 
 
 

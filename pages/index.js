@@ -1,4 +1,4 @@
-import Head from "next/head";
+
 import { useState } from "react";
 import styles from "./index.module.css";
 
@@ -16,6 +16,7 @@ export default function Home() {
   const [heroInput, setHeroInput] = useState("");
   const [descripInput, setDescripInput] = useState("");
   const [result, setResult] = useState();
+ 
 
   //submit data to generate function
   async function onSubmit(event) {
@@ -52,14 +53,16 @@ export default function Home() {
       console.error(error);
       alert(error.message);
     }
+
+    
   }
 
   return (
     <div>
-      <Head>
+      
         <title>Business Narrative Generator</title>
         
-      </Head>
+      
 
       <main className={styles.main}>
         <img src="/logo192.png" className={styles.icon} />
