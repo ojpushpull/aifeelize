@@ -57,6 +57,12 @@ export default function Home() {
     
   }
 
+  
+
+  function saveNarrative() {
+    localStorage.setItem("narrative", result);
+  }
+
   return (
     <div>
       
@@ -148,6 +154,7 @@ export default function Home() {
           <input type="submit" value="Generate narrative" />
         </form>
         <div className={styles.result}>{result}</div>
+        <button onClick={(saveNarrative) => setResult("")}>Proceed To Ad Generator</button>
       </main>
     </div>
   );
