@@ -16,6 +16,17 @@ export default function Home() {
   const [heroInput, setHeroInput] = useState("");
   const [descripInput, setDescripInput] = useState("");
   const [result, setResult] = useState();
+
+  const [ isAlertVisible, setIsAlertVisible ] = useState(false);
+
+   const handleButtonClick = () => {
+      setIsAlertVisible(true);
+
+      setTimeout(() => {
+                   setIsAlertVisible(false);
+                }, 30000);
+         
+    }
  
 
   //submit data to generate function
@@ -62,14 +73,18 @@ export default function Home() {
 
   return (
     <div>
-      
+        
         <title>Business Narrative Generator</title>
+       
         
       
 
       <main className={styles.main}>
+      <h2>AdPerfect.Ai prototype</h2>
         <img src="/logo192.png" className={styles.icon} />
         <h3>Create your narrative</h3>
+        <p> Answer the questions in the form below with how they pertain to your company/organization</p>
+        <p> When finished click the Generate narrative Button </p>
         <form onSubmit={onSubmit}>
           <textarea
             rows="5" 
@@ -170,8 +185,11 @@ export default function Home() {
             value={heroInput}
             onChange={(e) => setHeroInput(e.target.value)}
           />
-          <input type="submit" value="Generate narrative" />
+          <input onClick={handleButtonClick} type="submit" value="Generate narrative" />
         </form>
+        {isAlertVisible && <div className='alert-container'>
+               <div className='alert-inner'>Loading Please Wait</div>
+          </div>}
         <div className={styles.result}>{result}</div>
     
       </main>
