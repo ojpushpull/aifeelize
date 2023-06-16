@@ -71,78 +71,100 @@ export default function Home() {
         <img src="/logo192.png" className={styles.icon} />
         <h3>Create your narrative</h3>
         <form onSubmit={onSubmit}>
-          <input
-            type="text"
+          <textarea
+            rows="5" 
+            cols="33"
+            required
             name="name"
             placeholder="Enter an company name"
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="prodserv"
             placeholder="Enter your product or service"
             value={prodservInput}
             onChange={(e) => setProdservInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="vision"
             placeholder="Enter the vision of the organization"
             value={visionInput}
             onChange={(e) => setVisionInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="mission"
             placeholder="Enter the mission of the organization"
             value={missionInput}
             onChange={(e) => setMissionInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="problem"
             placeholder="What problem are you solving"
             value={problemInput}
             onChange={(e) => setProblemInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="solution"
             placeholder="What is the solution to the problem"
             value={solutionInput}
             onChange={(e) => setSolutionInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="future"
             placeholder="what is the future you are fighting for"
             value={futureInput}
             onChange={(e) => setFutureInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="descrip"
             placeholder="Enter descriptive words that best describe your organization"
             value={descripInput}
             onChange={(e) => setDescripInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="colors"
             placeholder="What core values represent your organization"
             value={colorInput}
             onChange={(e) => setColorInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea 
+            rows="5" 
+            cols="33"
+            required
             name="villian"
             placeholder="What is the villian of your organization"
             value={villianInput}
             onChange={(e) => setVillianInput(e.target.value)}
           />
-          <input
-            type="text"
+          <textarea
+            rows="5" 
+            cols="33"
+            required
             name="hero"
             placeholder="If your organization had a hero who would it be"
             value={heroInput}
