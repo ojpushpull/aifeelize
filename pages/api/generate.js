@@ -31,7 +31,7 @@ export default async function (req, res) {
   if (prodserv.length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid prodserv",
+        message: "Please enter a valid product or service",
       }
     });
     return;
@@ -95,7 +95,7 @@ export default async function (req, res) {
   if (colors.length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid colors",
+        message: "Please enter a valid core value",
       }
     });
     return;
@@ -149,11 +149,11 @@ export default async function (req, res) {
 
 function generatePrompt(name, prodserv, mission, vision, hero, villian, problem, solution, descrip, colors, future) {
   
-    return `You are a brand strategist write a 750 word creative narrative/ buying vision for the company based on the data provided
+    return `You are a brand strategist write a 750 word creative narrative/buying vision for the company based on the data provided
 
 
 
-Business: The organization is called ${name} they offer ${prodserv} their goal is ${mission} and they beleive in ${vision}. The organization believes ${problem} is an issue and can be solved with ${solution}. They fight for ${future} changes in the world. ${descrip} are the words and ${colors} are the colors that best describe this organization. The organization beleives ${villian} is the enemy they are against and ${hero} is a hero on their side.
+Business: The organization is called ${name} they offer ${prodserv} their goal is ${mission} and they beleive in ${vision}. The organization believes ${problem} is a problem that can be solved with ${solution}. The organization fights for ${future} as a future. ${descrip} are the words that best describe this organization. ${colors} are the values of your organization. ${villian} is the organizations enemy. ${hero} is a hero of the organization.
 Response:`;
 }
 
