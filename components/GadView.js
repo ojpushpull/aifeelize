@@ -25,7 +25,11 @@ export default function GadView(result) {
                 body: JSON.stringify({ buyv: result }),
             });
 
-                setAdBox(result); 
+            const data = await response.json();
+            if (response.status !== 200) {
+                throw data.error || new Error(`Request failed with status ${response.status}`);
+            }
+                setAdBox(data.result); 
             } catch(error) {
                 // error handling logic here
                 console.error(error);
