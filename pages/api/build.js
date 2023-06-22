@@ -16,7 +16,7 @@ export default async function (req, res) {
     }
 
     const result = req.body.buyv || '';
-    if (buyv.length === 0) {
+      if (result.length === 0) {
       res.status(400).json({
         error: {
           message: "Please create a buying vidison first",
