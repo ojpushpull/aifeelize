@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 import styles from "./index.module.css";
+import GadView from "/components/GadView.js"
+
 
 //set input states for form
 export default function Home() {
@@ -66,6 +68,12 @@ export default function Home() {
     }
 
     
+    
+  }
+
+  //pass result to child component
+  const pToChild = () => { 
+    console.log(result);
   }
 
   
@@ -77,8 +85,8 @@ export default function Home() {
         <title>Business Narrative Generator</title>
        
         
+        <GadView result={result} />
       
-
       <main className={styles.main}>
       <h2>AdPerfect.Ai prototype</h2>
         <img src="/logo192.png" className={styles.icon} />
@@ -190,9 +198,11 @@ export default function Home() {
         {isAlertVisible && <div className='alert-container'>
                <div className='alert-inner'>Loading Please Wait</div>
           </div>}
-        <div className={styles.result}>{result}</div>
-    
+        <div name="buyv" className={styles.result}>{result}</div>
+        <button onClick={pToChild}>Generate ads</button>
       </main>
+      
     </div>
+    
   );
 }
